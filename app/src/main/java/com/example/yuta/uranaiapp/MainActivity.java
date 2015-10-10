@@ -1,7 +1,7 @@
 package com.example.yuta.uranaiapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -9,17 +9,14 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    // 年選択用のSpinner
-    private Spinner yearSpinner;
-
-    // 月選択用のSpinner
-    private Spinner monthSpinner;
-
-    // 日選択用のSpinner
-    private Spinner daySpinner;
-
     // 開始年
     private static final int START_YEAR = 1950;
+    // 年選択用のSpinner
+    private Spinner yearSpinner;
+    // 月選択用のSpinner
+    private Spinner monthSpinner;
+    // 日選択用のSpinner
+    private Spinner daySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
         // Spinnerにデータをセットする
         yearSpinner.setAdapter(createYearAdapter());
+        monthSpinner.setAdapter(createMonthAdapter());
+        daySpinner.setAdapter(createDayAdapter());
     }
 
     /**
      * 年のArrayAdapterを作成
+     *
      * @return
      */
-    private ArrayAdapter<Integer> createYearAdapter(){
+    private ArrayAdapter<Integer> createYearAdapter() {
         // ArrayAdapterの初期化
         ArrayAdapter<Integer> yearAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item);
 
@@ -47,10 +47,38 @@ public class MainActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
 
-        for (int i=START_YEAR; i < year; i++){
+        for (int i = START_YEAR; i < year; i++) {
             yearAdapter.add(i);
         }
 
         return yearAdapter;
+    }
+
+    /**
+     * ArrayAdapterに月データをセットする
+     */
+    private ArrayAdapter<Integer> createMonthAdapter() {
+        // ArrayAdapterの初期化
+        ArrayAdapter<Integer> monthAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item);
+
+        for (int i = 1; i <= 12; i++) {
+            monthAdapter.add(i);
+        }
+
+        return monthAdapter;
+    }
+
+    /**
+     * ArrayAdapterに日データをセットする
+     */
+    private ArrayAdapter<Integer> createDayAdapter() {
+        ArrayAdapter<Integer> dayAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item);
+
+        Integer day = 31;
+        for (int i = 1; i <= day; i++) {
+            dayAdapter.add(i);
+        }
+
+        return dayAdapter;
     }
 }
