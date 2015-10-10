@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">UranaiApp</string>
+    <string name="title">占いアプリ</string>
+    <string name="name">氏名</string>
+    <string name="birthday">生年月日</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="bloodType">血液型</string>
+    <string name="type">型</string>
+
+    <string-array name="bloodTypes">
+        <item>A</item>
+        <item>B</item>
+        <item>O</item>
+        <item>AB</item>
+    </string-array>
+
+    <string name="sex">性別</string>
+    <string name="men">男性</string>
+    <string name="women">女性</string>
+    <string name="commit">占う</string>
 </resources>
