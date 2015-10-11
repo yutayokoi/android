@@ -7,12 +7,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
+    // 入力された名前
+    public static final String INPUT_NAME = "InputName";
+    // 計算値(添字として使用する)
+    public static final String RESULT_NUMBER = "ResultNumber";
     // 開始年
     private static final int START_YEAR = 1950;
     // 年選択用のSpinner
@@ -71,7 +76,29 @@ public class MainActivity extends AppCompatActivity {
                 // 第一引数がMainActivityのコンテキスト(MainActivity.this)
                 // コンテキストはアプリの情報や状態を保持しているもの
                 // 第二引数が遷移先のクラス
-                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+
+                // レイアウトからEditTextを取り出す
+                EditText editText = (EditText) findViewById(R.id.nameEditText);
+                String name = editText.getText().toString();
+
+                // 0~9の数字を求める為、生年月日を使用する
+                int year = (int) yearSpinner.getSelectedItem();
+                int month = (int) monthSpinner.getSelectedItem();
+                int day = (int) daySpinner.getSelectedItem();
+
+                // 年、月、日を足しあわせた結果を文字列に変換する
+                String str = String.valueOf(year + month + day);
+
+                // 文字列の一番後ろ(1桁目)を取り出し、整数に変換する
+                Integer resultNumber = Integer.parseInt(str.substring(str.length() - 1));
+
+
+                // 画面遷移前に、遷移先に移したいデータをセットしておく
+                // 第一引数が、渡すデータにつける名前
+                // 第二引数が、実際に渡すデータ
+                intent.putExtra(INPUT_NAME, name);
+                intent.putExtra(RESULT_NUMBER, resultNumber);
 
                 // 画面遷移の処理を行うためのメソッド
                 // intent(遷移先や、渡すためのデータが入っている)
