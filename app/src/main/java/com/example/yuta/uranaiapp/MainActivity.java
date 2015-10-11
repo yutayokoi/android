@@ -114,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
         // ArrayAdapterの初期化
         ArrayAdapter<Integer> yearAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item);
 
+        // ドロップダウン時の画面レイアウトを設定
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         // 現在、西暦何年かを取得する
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -132,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
         // ArrayAdapterの初期化
         ArrayAdapter<Integer> monthAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item);
 
+        // ドロップダウン時の画面レイアウトを設定
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         for (int i = 1; i <= 12; i++) {
             monthAdapter.add(i);
         }
@@ -144,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
      */
     private ArrayAdapter<Integer> createDayAdapter() {
         ArrayAdapter<Integer> dayAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item);
+
+        // ドロップダウン時の画面レイアウトを設定
+        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // 今、何月が選択されているかを取得
         int month = (int) monthSpinner.getSelectedItem();
