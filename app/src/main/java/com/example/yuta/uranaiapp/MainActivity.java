@@ -1,10 +1,12 @@
 package com.example.yuta.uranaiapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.Calendar;
@@ -56,6 +58,24 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        // 「占う」ボタンを押した際のリスナー設定
+        Button button = (Button) findViewById(R.id.divineButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            // 実際に選択されたView(Button)
+            public void onClick(View v) {
+                // Intentクラスのオブジェクト作成
+                // 第一引数がMainActivityのコンテキスト(MainActivity.this)
+                // コンテキストはアプリの情報や状態を保持しているもの
+                // 第二引数が遷移先のクラス
+                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+
+                // 画面遷移の処理を行うためのメソッド
+                // intent(遷移先や、渡すためのデータが入っている)
+                startActivity(intent);
             }
         });
     }

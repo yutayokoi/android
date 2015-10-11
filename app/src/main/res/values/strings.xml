@@ -20,4 +20,20 @@
     <string name="men">男性</string>
     <string name="women">女性</string>
     <string name="commit">占う</string>
+
+    <string name="title_activity_result">ResultActivity</string>
+
+    <string name="result">"さんの運勢は・・・"</string>
+    <string-array name="results">
+        <item>いいことが起きるでしょう！</item>
+        <item>最悪の1日になるでしょう！</item>
+        <item>微妙な1日になるでしょう！</item>
+        <item>普通の1日になるでしょう！</item>
+        <item>大きな決断をするでしょう！</item>
+        <item>異性に告白されるでしょう！</item>
+        <item>落とし物をするでしょう！</item>
+        <item>忘れ物をするでしょう！</item>
+        <item>問題を解決できるでしょう！</item>
+        <item>災難が起きるでしょう！</item>
+    </string-array>
 </resources>
