@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 年のArrayAdapterを作成
-     *
-     * @return
      */
     private ArrayAdapter<Integer> createYearAdapter() {
         // ArrayAdapterの初期化
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<Integer> createDayAdapter() {
         ArrayAdapter<Integer> dayAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item);
 
-        Integer day = 31;
+        int day = 31;
         for (int i = 1; i <= day; i++) {
             dayAdapter.add(i);
         }
