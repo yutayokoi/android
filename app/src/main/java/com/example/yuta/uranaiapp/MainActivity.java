@@ -98,13 +98,27 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<Integer> createDayAdapter() {
         ArrayAdapter<Integer> dayAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item);
 
-        // 1.今、何月が選択されているかを取得
+        // 今、何月が選択されているかを取得
         int month = (int) monthSpinner.getSelectedItem();
 
-        // 2.選択されている月が4,6,9,11の場合、1~30までとする
+        // 選択されている月が4,6,9,11の場合、1~30までとする
         int day = 31;
         if (month == 4 || month == 6 || month == 9 || month == 11) {
             day = 30;
+        }
+
+        // 選択されている月が2月の場合
+        else if (month == 2) {
+            int year = (int) yearSpinner.getSelectedItem();
+
+            // 西暦の年が4で割り切れる年はうるう年
+            // ただし、100で割り切れる場合はうるう年ではない → 100で割り切れない場合はうるう年
+            // ただし、400で割り切れる場合はうるう年
+            if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+                day = 29;
+            } else {
+                day = 28;
+            }
         }
 
         for (int i = 1; i <= day; i++) {
