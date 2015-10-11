@@ -2,6 +2,8 @@ package com.example.yuta.uranaiapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -32,6 +34,30 @@ public class MainActivity extends AppCompatActivity {
         yearSpinner.setAdapter(createYearAdapter());
         monthSpinner.setAdapter(createMonthAdapter());
         daySpinner.setAdapter(createDayAdapter());
+
+        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                daySpinner.setAdapter(createDayAdapter());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // Spinnerで値が選択された時のイベント
+        monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                daySpinner.setAdapter(createDayAdapter());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     /**
@@ -72,7 +98,15 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<Integer> createDayAdapter() {
         ArrayAdapter<Integer> dayAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item);
 
+        // 1.今、何月が選択されているかを取得
+        int month = (int) monthSpinner.getSelectedItem();
+
+        // 2.選択されている月が4,6,9,11の場合、1~30までとする
         int day = 31;
+        if (month == 4 || month == 6 || month == 9 || month == 11) {
+            day = 30;
+        }
+
         for (int i = 1; i <= day; i++) {
             dayAdapter.add(i);
         }
